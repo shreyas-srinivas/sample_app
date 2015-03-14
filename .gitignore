@@ -19,6 +19,7 @@ doc/
 *.swp
 *~
 \#*
+.\#*
 .project
 .projectile
 .DS_Store
