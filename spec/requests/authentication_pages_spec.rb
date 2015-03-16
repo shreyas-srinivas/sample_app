@@ -56,6 +56,21 @@ describe "AuthenticationPages" do
         end
       end
 
+      describe "in the Microposts Controller" do
+
+        describe "submitting to the create action" do
+          before { post microposts_path }
+          specify { response.should redirect_to signin_path }
+        end
+
+        describe "submitting to destroy action" do
+          before do
+            micropost = FactoryGirl.create(:micropost)
+            delete micropost_path(micropost)
+          end
+          specify { response.should redirect_to signin_path }
+        end
+      end
       describe "when attempting to visit a protected page" do
         before do
           visit edit_user_path(user)
@@ -110,5 +125,6 @@ describe "AuthenticationPages" do
         expect { delete user_path(admin) }.not_to change(User, :count).by(-1)
       end
     end
+    
   end
 end
